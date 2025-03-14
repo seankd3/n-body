@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Body Physics Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>N-Body Physics Simulation</h1>
+        </header>
+        
+        <div class="simulation-container">
+            <canvas id="simulation-canvas"></canvas>
+            <div class="controls-panel">
+                <div class="simulation-controls">
+                    <h2>Simulation Controls</h2>
+                    <button id="start-pause-btn">Start/Pause</button>
+                    <button id="reset-btn">Reset</button>
+                    <div class="slider-container">
+                        <label for="speed-slider">Simulation Speed:</label>
+                        <input type="range" id="speed-slider" min="0.1" max="5" step="0.1" value="1">
+                        <span id="speed-value">1.0x</span>
+                    </div>
+                    <div class="slider-container">
+                        <label for="time-step-slider">Time Step (dt):</label>
+                        <input type="range" id="time-step-slider" min="0.01" max="0.1" step="0.01" value="0.01">
+                        <span id="time-step-value">0.01</span>
+                    </div>
+                    <div class="checkbox-container">
+                        <label for="show-trails">Show Trails:</label>
+                        <input type="checkbox" id="show-trails" checked>
+                    </div>
+                    <div class="checkbox-container">
+                        <label for="center-of-mass">Center on CoM:</label>
+                        <input type="checkbox" id="center-of-mass">
+                    </div>
+                </div>
+
+                <div class="body-controls">
+                    <h2>Bodies</h2>
+                    <div id="bodies-list"></div>
+                    <button id="add-body-btn">Add New Body</button>
+                </div>
+
+                <div class="presets">
+                    <h2>Presets</h2>
+                    <button id="solar-system-btn">Solar System</button>
+                    <button id="binary-stars-btn">Binary Stars</button>
+                    <button id="three-body-btn">Three-Body System</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="add-body-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Body</h2>
+                <form id="add-body-form">
+                    <div class="form-group">
+                        <label for="body-name">Name:</label>
+                        <input type="text" id="body-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-mass">Mass (× 10^24 kg):</label>
+                        <input type="number" id="body-mass" min="0.001" step="0.001" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-radius">Radius (pixels):</label>
+                        <input type="number" id="body-radius" min="1" max="50" step="1" value="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-color">Color:</label>
+                        <input type="color" id="body-color" value="#FF5733" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-x">X Position:</label>
+                        <input type="number" id="body-x" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-y">Y Position:</label>
+                        <input type="number" id="body-y" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-vx">X Velocity:</label>
+                        <input type="number" id="body-vx" value="0" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body-vy">Y Velocity:</label>
+                        <input type="number" id="body-vy" value="0" step="0.1" required>
+                    </div>
+                    <button type="submit">Add Body</button>
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Inspired by the Principia mod for Kerbal Space Program</p>
+        </footer>
+    </div>
+
+    <script src="physics.js"></script>
+    <script src="renderer.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
